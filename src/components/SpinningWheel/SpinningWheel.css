@@ -1,0 +1,16 @@
+.track {
+  stroke: #ccc;
+}
+
+.marker {
+  motion-path: path("M 5 5 m -4, 0 a 4,4 0 1,0 8,0 a 4,4 0 1,0 -8,0");
+  offset-path: path("M 5 5 m -4, 0 a 4,4 0 1,0 8,0 a 4,4 0 1,0 -8,0");
+  animation: move 3s linear infinite;
+}
+
+@keyframes move {
+  100% {
+    motion-offset: 100%;
+    offset-distance: 100%;
+  }
+}
