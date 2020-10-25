@@ -1,26 +1,34 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { Component } from "react";
+
+import Header from "../Header/Header";
 import {
   HowItWorks,
   ListItem,
   Instructions,
 } from "../LandingPage/LandingPage.styled";
-import { Button } from "../Utils/Utils.styled";
 
-export default function LandingPage() {
-  return (
-    <>
+export default class LandingPage extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      play: false,
+    };
+  }
+
+  render() {
+    return (
       <Instructions>
         <HowItWorks>How It Works</HowItWorks>
         <ol>
-          <ListItem>Pick an activity and location</ListItem>
-          <ListItem>Play Roulet's go out!</ListItem>
-          <ListItem>Ask me out</ListItem>
+          <ListItem>Click on Roulet's Go Out wheel to get started.</ListItem>
+          <ListItem>Pick an activity and location.</ListItem>
+          <ListItem>
+            Use the map to navigate to your randomly picked location.
+          </ListItem>
         </ol>
-        <Link to="/play">
-          <Button>Get Started</Button>
-        </Link>
+
+        <Header redirect={this.redirectToPlay} />
       </Instructions>
-    </>
-  );
+    );
+  }
 }

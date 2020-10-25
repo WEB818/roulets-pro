@@ -1,13 +1,28 @@
 import styled from "styled-components";
 
+export const DetailContainer = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+
+  @media (min-width: 768px) {
+    width: 60%;
+  }
+`;
+
 export const DateForm = styled.form`
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-around;
-  height: 90vh;
   width: 100vw;
-  overflow: hidden;
+
+  @media (min-width: 768px) {
+    margin-top: 50%;
+  }
+
+  @media (min-width: 1440px) {
+    margin-top: 10%;
+  }
 `;
 
 export const SelectWrapper = styled.div`
@@ -17,6 +32,16 @@ export const SelectWrapper = styled.div`
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
+
+  @media (min-width: 1440px) {
+    width: 100vw;
+    height: 75vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: no-wrap;
+  }
 `;
 
 export const Select = styled.div`

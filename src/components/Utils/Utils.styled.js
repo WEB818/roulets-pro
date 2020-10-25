@@ -4,9 +4,13 @@ export const Button = styled.button`
   background: #ea4b8b;
   padding: 10px 20px;
   color: white;
-  border: none;
+  border: dotted 2px white;
   border-radius: 4px;
   margin: 30px;
+
+  :focus {
+    outline: dotted 4px #ea4b8b;
+  }
 `;
 
 export const Label = styled.label`
@@ -21,13 +25,20 @@ export const Selection = styled.select`
   width: 150px;
   font-family: "Noto Sans TC", sans-serif;
   margin: 10px;
+  :focus {
+    outline: dotted 4px #ea4b8b;
+  }
 `;
 
 export const Input = styled.input`
   max-width: 150px;
-  text-align: center;
+
   border: none;
   border-bottom: 1px solid #ea4b8b;
+
+  :focus {
+    outline: dotted 4px #ea4b8b;
+  }
 `;
 
 export const TextArea = styled.textarea`

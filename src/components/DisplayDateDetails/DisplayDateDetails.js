@@ -1,18 +1,13 @@
 import React, { Component } from "react";
 import config from "../../config";
-import DateRequest from "../DateRequest/DateRequest";
+
 import {
   MapContainer,
   Container,
-  BtnContainer,
+  DetailContainer,
 } from "./DisplayDateDetails.styled";
-import { Button, LinkTo } from "../Utils/Utils.styled";
+import { LinkTo, Button } from "../Utils/Utils.styled";
 export default class DisplayDate extends Component {
-  constructor(props) {
-    super(props);
-    this.state = { setDate: false };
-  }
-
   displayMap(location) {
     let url = location.replace(/\s/g, "+");
 
@@ -23,26 +18,6 @@ export default class DisplayDate extends Component {
         allowFullScreen
       ></MapContainer>
     );
-  }
-
-  displayMessage(price) {
-    if (price === "$$$$") {
-      return (
-        <div>
-          <h2>Baby, I'm worth it.</h2>
-          <iframe
-            src="https://giphy.com/embed/d47IFWkfzgr4DASQ"
-            title="worth it giphy"
-            alt="worth it giphy"
-            width="480"
-            height="270"
-            frameBorder="0"
-            className="giphy-embed"
-            allowFullScreen
-          ></iframe>
-        </div>
-      );
-    }
   }
 
   displayRating(rating) {
@@ -79,8 +54,6 @@ export default class DisplayDate extends Component {
   displayType(type) {
     if (type === "walk") {
       return "a walk";
-    } else if (type === "picnic") {
-      return "a picnic";
     } else if (type === "coffee tea outdoor seating") {
       return "coffee or tea";
     } else {
@@ -88,43 +61,25 @@ export default class DisplayDate extends Component {
     }
   }
 
-  itsADate = () => {
-    this.setState({ setDate: true });
-  };
-
   renderDateDetails() {
-    let description = this.displayMessage(this.props.price);
     let score = this.displayRating(this.props.rating);
     let type = this.displayType(this.props.type);
     let map = this.displayMap(this.props.restaurant);
     return (
-      <Container>
+      <DetailContainer>
         <h1>Roulet's go here for {type}!</h1>
         {score}
         {map}
-        {description}
-        <BtnContainer>
-          <Button onClick={this.props.replay}>Spin Again</Button>
-          <Button onClick={this.props.dateRequest}>Ask Me Out</Button>
-        </BtnContainer>
-      </Container>
+      </DetailContainer>
     );
   }
 
   render() {
-    const { itsADate } = this.props;
-
     return (
-      <>
-        {itsADate ? (
-          <DateRequest
-            place={this.props.restaurant}
-            address={this.props.address}
-          />
-        ) : (
-          this.renderDateDetails()
-        )}
-      </>
+      <Container>
+        {this.renderDateDetails()}
+        <Button onClick={this.props.replay}>Spin Again</Button>
+      </Container>
     );
   }
 }

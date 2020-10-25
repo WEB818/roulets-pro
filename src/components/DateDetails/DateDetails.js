@@ -1,13 +1,28 @@
 import React, { Component } from "react";
 
 import DisplayDateDetails from "../DisplayDateDetails/DisplayDateDetails";
-import { DateForm, SelectWrapper, Select } from "./DateDetails.styled";
+import SpinAgain from "../SpinAgain/SpinAgain";
+import {
+  DateForm,
+  SelectWrapper,
+  Select,
+  DetailContainer,
+} from "./DateDetails.styled";
 import { Label, Input, Selection, Button } from "../Utils/Utils.styled";
+import PreviousSpinList from "../PreviousSpinList/PreviousSpinList";
 
 export default class DateDetails extends Component {
+  handleSubmit = (ev) => {
+    let length = this.props.prevSpins.length;
+
+    this.props.getLocation(ev);
+    this.props.spinCount();
+    this.props.handleList(length);
+  };
+
   renderForm() {
     return (
-      <DateForm onSubmit={(ev) => this.props.getLocation(ev)}>
+      <DateForm onSubmit={(ev) => this.handleSubmit(ev)}>
         <SelectWrapper>
           <Select>
             <Label htmlFor="type">What should we do?</Label>
@@ -17,7 +32,7 @@ export default class DateDetails extends Component {
               name="type"
               onChange={(ev) => this.props.onChange(ev)}
             >
-              <option value="fun">I'm up for anything!</option>
+              <option value="fun">Something fun!</option>
               <option value="coffee tea outdoor seating + takeout">
                 Coffee or Tea
               </option>
@@ -27,7 +42,6 @@ export default class DateDetails extends Component {
               <option value="drinks outdoor seating + takeout">Drinks</option>
               <option value="dessert outdoor seating + takeout">Dessert</option>
               <option value="walk">Go for a walk</option>
-              <option value="picnic">Go on a picnic</option>
             </Selection>
           </Select>
           <Select>
@@ -36,7 +50,7 @@ export default class DateDetails extends Component {
               id="location"
               type="text"
               name="location"
-              placeholder="btw, I live in Berkeley"
+              placeholder="City/state or zip code"
               required
             />
           </Select>
@@ -56,18 +70,25 @@ export default class DateDetails extends Component {
         rating={this.props.rating}
         link={this.props.link}
         replay={this.props.replay}
-        dateRequest={this.props.dateRequest}
-        itsADate={this.props.itsADate}
       />
     );
   }
+
   render() {
-    const { details, error } = this.props;
+    const { details, count, error, prevSpins, playAgain, lastTen } = this.props;
     return (
       <>
         {error ? <p>Something went wrong. Please play again later.</p> : ""}
         {details ? (
-          <div>{this.renderDetails()}</div>
+          <DetailContainer>
+            {this.renderDetails()}
+            <SpinAgain count={count} />
+            <PreviousSpinList
+              prevSpins={prevSpins}
+              playAgain={playAgain}
+              lastTen={lastTen}
+            />
+          </DetailContainer>
         ) : (
           <div>{this.renderForm()}</div>
         )}

@@ -1,29 +1,30 @@
 import React, { Component } from "react";
-import "./Header.css";
-import { Circle } from "./Header.styled";
+
+import { Circle, TextPath, Path } from "./Header.styled";
 
 export default class Header extends Component {
   render() {
-    let textPath = `<textPath xlink:href="#curve">...Roulet's Go Out.......................</textPath>`;
+    let textPath = `<textPath xlink:href="#curve">................Roulet's Go Out....................................</textPath>`;
     return (
       <Circle>
         <svg viewBox="0 0 400 400">
-          <path
+          <Path
+            onClick={this.props.redirect}
             id="curve"
-            stroke="#ffffff"
-            strokeWidth="30"
-            d="M 400, 40
-            m -100, 0
-            a 50,50 0 1,0 100,0
-            a 50,50 0 1,0 -100,0
+            stroke="white"
+            strokeWidth="50"
+            d="M 100, 100
+            m 0, 0
+            a 100,100 0 1,0 200,0
+            a 100,100 0 1,0 -200,0
             "
-            fill="#ea4b8b"
+            fill="#EA4B8B"
           />
 
-          <text
+          <TextPath
             className="text-path"
             dangerouslySetInnerHTML={{ __html: textPath }}
-          ></text>
+          ></TextPath>
         </svg>
       </Circle>
     );
