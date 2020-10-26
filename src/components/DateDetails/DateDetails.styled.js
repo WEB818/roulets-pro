@@ -41,6 +41,7 @@ export const SelectWrapper = styled.div`
     justify-content: center;
     align-items: center;
     flex-wrap: no-wrap;
+    color: white;
   }
 `;
 

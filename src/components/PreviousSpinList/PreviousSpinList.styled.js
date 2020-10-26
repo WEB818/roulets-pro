@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 export const PrevSpinList = styled.div`
+  padding-bottom: 30px;
   text-align: center;
   width: 100%;
 
